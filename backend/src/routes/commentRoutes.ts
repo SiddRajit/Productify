@@ -5,6 +5,6 @@ import { createComment, deleteComment } from "../controllers/commentController";
 const router = Router();
 
 router.post("/:productId", requireAuth(), createComment);
-router.delete(":/commentId", requireAuth(), deleteComment);
+router.delete("/:commentId", requireAuth(), deleteComment);
 
 export default router;
