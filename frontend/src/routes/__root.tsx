@@ -4,12 +4,19 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 
 import "../styles.css";
 import Navbar from "#/components/Navbar";
+import useAuthReq from "#/hooks/useAuthReq";
+import useUserSync from "#/hooks/useUserSync";
 
 export const Route = createRootRoute({
   component: RootComponent,
 });
 
 function RootComponent() {
+  const { isClerkLoaded, isSignedIn } = useAuthReq();
+  useUserSync();
+
+  if (!isClerkLoaded) return null;
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
