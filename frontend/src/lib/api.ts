@@ -4,16 +4,9 @@ import api from "./axios";
 
 //Users API
 export const syncUser = async (userData: SyncUserData) => {
-  try {
-    const { data } = await api.post("/users/sync", userData);
-    console.log("Syc response: ", data);
+  const { data } = await api.post("/users/sync", userData);
 
-    return data;
-  } catch (error) {
-    console.log("Status: ", error.response?.status);
-    console.log("Message: ", error.response?.data);
-    throw error;
-  }
+  return data;
 };
 
 //Products API
