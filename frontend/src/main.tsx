@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { dark } from "@clerk/themes";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { ThemeProvider, useTheme } from "./components/ThemeProvider";
+import { getRouter } from "./router";
+import App from "./App";
 
 const queryClient = new QueryClient();
 
@@ -14,11 +16,7 @@ if (!PUBLISHABLE_KEY) {
   throw new Error("Add your Clerk Publishable Key to the .env file");
 }
 
-const router = createRouter({
-  routeTree,
-  defaultPreload: "intent",
-  scrollRestoration: true,
-});
+const router = getRouter();
 
 declare module "@tanstack/react-router" {
   interface Register {
@@ -51,7 +49,7 @@ if (!rootElement.innerHTML) {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <ClerkWithTheme>
         <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
+          <App />
         </QueryClientProvider>
       </ClerkWithTheme>
     </ThemeProvider>,
