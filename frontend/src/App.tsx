@@ -1,6 +1,5 @@
-import { createRouter, RouterProvider } from "@tanstack/react-router";
+import { RouterProvider } from "@tanstack/react-router";
 import useAuthReq from "./hooks/useAuthReq";
-import { routeTree } from "./routeTree.gen";
 import { getRouter } from "./router";
 
 const router = getRouter();

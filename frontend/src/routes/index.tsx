@@ -16,7 +16,12 @@ function RouteComponent() {
   const { data, isLoading, error } = useProducts();
   const products = data?.data ?? [];
 
-  if (isLoading) return <Loader2 />;
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Loader2 className="animate-spin size-14" />
+      </div>
+    );
 
   if (error) {
     return (

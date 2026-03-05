@@ -30,7 +30,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
               {product.title}
             </h2>
             {isNew && (
-              <Badge variant="secondary" className="text-xs shrink-0">
+              <Badge
+                variant="secondary"
+                className="text-xs shrink-0 bg-primary"
+              >
                 NEW
               </Badge>
             )}
