@@ -1,6 +1,7 @@
 import {
   createProduct,
   deleteProduct,
+  getMyProducts,
   getProduct,
   getProducts,
 } from "#/lib/api";
@@ -29,10 +30,20 @@ export const useProduct = (id: string) => {
   });
 };
 
-export const useDeleteProduct = (id: string) => {
+export const useDeleteProduct = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => deleteProduct(id),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["products"] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({ queryKey: ["my-products"] });
+    },
+  });
+};
+
+export const useMyProducts = () => {
+  return useQuery({
+    queryKey: ["my-products"],
+    queryFn: getMyProducts,
   });
 };
